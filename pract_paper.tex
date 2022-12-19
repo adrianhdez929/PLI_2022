@@ -84,7 +84,7 @@ Los \(q\) se espera que tengan energía unitaria, por tanto, preservando la ener
     \sum_{k=0}^{N - 1} q_{k}(\frac{N}{2} + 1 + k)^b = 0
 \end{equation}
 
-donde \(b = \{1, 2, ..., \frac{N}{2} - 1\}\).
+donde \(b = \{1, 2, \cdots, \frac{N}{2} - 1\}\).
 
 \paragraph*{Paso 3:}
 \(\frac{N}{2} - 1\) restricciones de clase son impuestas:
@@ -115,7 +115,7 @@ Teniendo los filtros \(q\) y \(p\) en función de los \(K\) coeficientes de cono
 señales numéricas. Realizando el producto matricial \(As = r\), donde \(A[n \times n]\) representa una matriz de {\it Cuadratura de Filtros Espejados}, formulada a partir de 
 \(q[n]\) y \(p[n]\); \(s[n]\) es una señal de entrada, con las muestras del contenido a filtrar; y \(r[n]\) la señal transformada. Dicho proceso es llamado {\it Algoritmo 
 de Mallat} \cite{mallat}, el cual es un algoritmo de {\it Transformada Wavelet}. Consiste en una multiplicación de dicha matriz, por una señal de entrada, donde el resultado de concatenar 
-los \(\frac{N}{2}\) índices pares de \(r[n]\) con los \(\frac{N}{2}\) índices impares corresponde al primer nivel de la {\it Transformada Wavelet} sobre \(s[n]\). Realizando este proceso \(\log_{2}{N}\) 
+los \(\frac{N}{2}\) índices pares de \(r[n]\) con los \(\frac{N}{2}\) índices impares corresponde al primer nivel de la {\it Transformada Wavelet Discreta} sobre \(s[n]\). Realizando este proceso \(\log_{2}{N}\) 
 veces hasta que la señal de entrada tenga solamente un único coeficiente, obteniendo la transformada de dicha señal, donde en cada iteración se reformula la matriz \(A\), atendiendo al tamaño de la entrada 
 del nivel correspondiente de la transformada. Para la solución de este subproblema se propone el siguiente algoritmo:
 
@@ -138,18 +138,18 @@ Formulando la matriz \(A\) en función de \(p\), \(q\) y \(M\) de la siguiente f
 \end{equation}
 
 \paragraph*{Paso 2:}
-Utilizando el {\it Algoritmo de Mallat} para hallar \(TW{s[M]}\) {\it (Transformada Wavelet para \(s[M]\))}, realizando el producto matricial:
+Utilizando el {\it Algoritmo de Mallat} para hallar \(TWD{s[M]}\) {\it (Transformada Wavelet Discreta para \(s[M]\))}, realizando el producto matricial:
 
 \begin{equation}
     A \times s = r
 \end{equation}
 
 Proceso que se repite \(\log_{2}N\) veces, donde luego de cada vez que efectua el producto el primer nivel de la 
-\(TW_{s}\) quedaría como la concatenación de los índices pares e impares del resultado \(r\) de la forma: \(r = \{r_{0}, r_{2}, r_{4}, ..., r_{N - 2}, r_{1}, r_{3}, r_{5}, ..., r_{N - 1}\}\), ya que se espera 
+\(TWD_{s}\) quedaría como la concatenación de los índices pares e impares del resultado \(r\) de la forma: \(r = \{r_{0}, r_{2}, r_{4}, \cdots, r_{N - 2}, r_{1}, r_{3}, r_{5}, \cdots, r_{N - 1}\}\), ya que se espera 
 que la entrada \(N\) siempre sea par.
 
 \paragraph*{Paso 3:}
-Luego, cada nivel subsecuente de la \(TW_{s}\) sería el resultado de aplicar el {\bf Paso 2} a los \(\frac{N}{2}\) resultados del nivel anterior, hasta llegar al nivel \(\frac{\log_{2}M}{2}\), con el cual se obtiene la transformada de 
+Luego, cada nivel subsecuente de la \(TWD_{s}\) sería el resultado de aplicar el {\bf Paso 2} a los \(\frac{N}{2}\) resultados del nivel anterior, hasta llegar al nivel \(\frac{\log_{2}M}{2}\), con el cual se obtiene la transformada de 
 nivel medio de la señal original \(s\).
 
 \noindent {\section*{\underline{FIN}}}
@@ -200,7 +200,7 @@ los coeficientes \(K\).
 
 \paragraph*{Paso 4:}
 Una vez solucionado el sistema no lineal del {\bf Paso 4} y obtenidos los \(N \times (\frac{N}{2} - 1)\) coeficientes de conocimiento \(K\), se sustituyen esos valores numéricos en las ecuaciones simbólicas \(q\), o sea 
-\(q(k_{0}, k_{1}, ..., k_{N \times (\frac{N}{2} - 1) -1})\), cuyo resultado produciría los \(N\) coeficientes numéricos \(q_{i}\) de los filtros basados en conocimiento.
+\(q(k_{0}, k_{1}, \cdots, k_{N \times (\frac{N}{2} - 1) -1})\), cuyo resultado produciría los \(N\) coeficientes numéricos \(q_{i}\) de los filtros basados en conocimiento.
 
 \noindent {\section*{\underline{FIN}}}
 
@@ -223,10 +223,10 @@ mejorar las soluciones iniciales e incluso lograr una solución general para el 
     \item \href{https://www.sympy.org/}{SymPy} 
 \end{enumerate}
 
-\paragraph*{Transformada Symmlet:}
+\paragraph*{Transformada Symlet:}
 Familia {\it wavelet} con amplio uso en el tratamiento de señales de voz, debido a que su forma refleja bastante bien las características principales de la voz.
 
-\paragraph*{Transformada Discreta Wavelet:}
+\paragraph*{Transformada Wavelet:}
 Una {\it wavelet} \cite{wavelet}, es una señal que tiene una duración limitada y un valor promedio de 0. La principal diferencia con la transformada de Fourier, para el análisis de señales son sus propiedades de asimetría e irregularidad, las cuales describen 
 mucho mejor el comportamiento real de una señal, ya sea analógica o digital. Al seleccionar una {\it wavelet} de las distintas familias existentes, por su similitud con el tipo de señal que queremos analizar, se le pueden realizar cambios, puesto que esta puede trasladarse 
 o escalar (comprimirse o expandirse) a lo largo de nuestra señal. Si definimos nuestra wavelet como \(\psi_{a, b}(t)\), siendo \(a\) y \(b\) los parámetros de escalamiento y desplazamiento respectivamente se tiene:
@@ -235,14 +235,14 @@ o escalar (comprimirse o expandirse) a lo largo de nuestra señal. Si definimos 
     \psi_{a,b}(t) = \frac{1}{\sqrt{a}}\psi(\frac{t - b}{a})
 \end{equation*}
 
-Teniendo esto se puede definir la {\it Transformada Continua Wavelet} como el producto de una señal continua y su {\it wavelet} asociada en su versión desplazada y escalada de la forma:
+Teniendo esto se puede definir la {\it Transformada Wavelet Continua} como el producto de una señal continua y su {\it wavelet} asociada en su versión desplazada y escalada de la forma:
 
 \begin{equation*}
-    TCW(a, b) = \frac{1}{\sqrt{a}}\int_{-\infty}^{\infty}x(t)\psi(\frac{t - b}{a})dt
+    TWC(a, b) = \frac{1}{\sqrt{a}}\int_{-\infty}^{\infty}x(t)\psi(\frac{t - b}{a})dt
 \end{equation*}
 
 donde \(x(t)\) es la señal continua.\\
-La TDW se obtiene al discretizar los parámetros de desplazamiento y escalamiento dentro de la TCW. Generalmente los valores que se utilizan son:
+La TWD se obtiene al discretizar los parámetros de desplazamiento y escalamiento dentro de la TWC. Generalmente los valores que se utilizan son:
 
 \begin{equation*}
     \begin{cases}
@@ -257,10 +257,10 @@ donde \(a\) es el escalamiento, \(b\) el desplazamiento y \(j, k\) valores enter
     \psi_{j, k}(t)= w^{\frac{j}{2}}\psi(2^{j}t - k); j, k \in \mathbb{Z}
 \end{equation*}
 
-Por lo que se define la TDW como:
+Por lo que se define la TWD como:
 
 \begin{equation*}
-    TDW_{j, k} = 2^{\frac{j}{2}}\int_{-\infty}^{\infty}x(t)\psi(2^{j}t-k)dt
+    TWD_{j, k} = 2^{\frac{j}{2}}\int_{-\infty}^{\infty}x(t)\psi(2^{j}t-k)dt
 \end{equation*}
 
 con \(x(t)\) una señal discreta. 
@@ -271,11 +271,11 @@ características y con un objetivo específico, dependiendo de la transformada q
 
 \paragraph*{Cuadratura de Filtros Espejados:}
 Matriz de convolución asociada a los filtros pasa-bajas y pasa-altas, en la que cada par de filas contiene a dichos filtros, con un desfase de 2 columnas con respecto al par de filas anterior y rellenando todos los demás espacios vacíos con 0. Esta matriz de convolución, 
-se utiliza para hacer {\it downsampling} a la señal de entrada usando el método de {\it Transformada Discreta Wavelet} descrito en el algoritmo de Mallat, con modificaciones para adaptarlo al contexto de señales de sonido.
+se utiliza para hacer {\it downsampling} a la señal de entrada.
 
 \paragraph*{Algoritmo de Mallat:}
 Stephane G. Mallat, en \cite{mallat}, plantea una forma de descomponer señales de una y dos dimensiones relacionadas a imágenes, utilizando {\it Transformadas Wavelet}, para facilitar el análisis 
-de distintas propiedades de dichas imágenes. Este proceso se basa en una formulación, utilizando las bases ortonormales respectivas a una {\it wavelet}, para formular un sistema piramidal, en el cual utilizando un banco de filtros \(H y G\) pasa-bajas y pasa-altas, se puede 
+de distintas propiedades de dichas imágenes. Este proceso se basa en una formulación, utilizando las bases ortonormales respectivas a una {\it wavelet}, para formular un sistema piramidal, en el cual utilizando un banco de filtros, se puede 
 hacer {\it downsampling} de la señal original para su posterior clasificación, disminuyendo su resolución, pero sabiendo en todo momento el cambio de sus propiedades con respecto a una resolución anterior. Este proceso es válido incluso en sentido inverso, realizando un {\it upsampling}, para 
 revertir el proceso, e incluso recrear dichas imágenes (señales), a partir de otras descomposiciones. En este informe y algunos de los citados, se utiliza una adaptación de ese algoritmo, para realizar la descomposición de una señal de entrada, para su posterior clasificación utilizando 
 Asimetría ({\it Skewness}) y Curtosis ({\it Kurtosis}), para obtener un parámetro de clasificación basado en conocimiento y encontrar la solución al problema inicial.
